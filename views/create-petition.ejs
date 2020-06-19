@@ -1,0 +1,79 @@
+
+<% include partials/header %>
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/a22m3f8464agd3ubwq6fhblsj2g29u43ysng68gkvho12zk3/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+  tinymce.init({
+  selector: 'textarea',
+  height: 400,
+  width : 620,
+  menubar: true,
+  init_instance_callback: function(editor) {
+    editor.on('keyup', function(e) {
+        
+        console.log(tinymce.activeEditor.getContent());
+        document.getElementById('survey_body').value = tinymce.activeEditor.getContent();
+        handleChange('' , 'survey_body' , {required : true});
+    });
+  },
+  toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent' numlist bullist",
+  menubar: 'favs file edit view table',
+  plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+  content_css: '//www.tiny.cloud/css/codepen.min.css'
+});
+</script>
+</head>
+<body>
+  
+</body>
+</html>
+
+
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">Create Petition</h3>
+  <p class="w3-center w3-large">Lets get in touch with the world that thinks like you</p>
+  <div class="shadow">
+    <!-- <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Chicago, US</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p> -->
+    <div class="container">
+        <p class="">All fields are mandatory</p>
+        <form action="/api/create-petition" id="petition-form" method="POST">
+        <div>
+            <span class="error hide" id="name-error">Enter correct name</span>
+            <input class="w3-input w3-border" id = "name" onkeyup="handleChange(this , 'name' , {required : true })" type="text" placeholder="Name" required name="name">
+        </div>
+        
+        
+        <div>
+            <span class="error hide" id="email-error">Enter correct email</span>
+            <input class="w3-input w3-border w3-margin-top" id = "email" onkeyup="handleChange(this , 'email' , {required : true })" type="text" placeholder="Email" required name="email">
+        </div>
+        <div>
+            <span class="error hide" id="mobile-error">Enter correct Mobile No</span>
+            <input class="w3-input w3-border w3-margin-top" id = "mobile" onkeyup="handleChange(this , 'mobile', {number : true , required : true })" type="tel" placeholder="Mobile No" maxlength="10" required name="mobile"></p>
+        </div>
+        
+        <p class=" w3-xxlarge"><strong>Enter Petition or Question Description</strong></p>
+            <span class="error hide" id="survey_body-error">This field is mandatory</span>
+            <textarea class="w3-input w3-border w3-margin-top hide"  type="text" required id="survey_body" name="survey_body"><h1>Title of your Petition/Question</h1><h3>small description</h3> <p>Why this petition</p></textarea></p>
+        
+        <div>
+            <span class="error hide" id="target-error">Enter correct target</span>
+            <input class="w3-input w3-border w3-margin-top" id = "target" onkeyup="handleChange(this , 'target' , {required : true })" type="number" placeholder="Enter Target Signature" required name="target">
+        </div>
+        <div>
+            <button class="w3-button button  w3-margin-top" type="button" onclick="handleFinalSubmission(['name' , 'email' , 'mobile' , 'target' , 'survey_body'])">
+            <i class="fa fa-paper-plane"></i> Submit
+            </button>
+        </div>
+        </form>
+    </div>
+    
+  </div>
+</div>
+
+<% include partials/footer %>
+
