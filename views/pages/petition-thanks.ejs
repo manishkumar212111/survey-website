@@ -1,0 +1,26 @@
+
+<% include ../partials/header %>
+
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+    <div class="shadow">
+        <div class="container w3-center">
+            <h2 class="success-text">Thanks for Your Submission !</h2>
+            <!-- <p class="w3-large">Submission Code : <%- data.url_code %></p> -->
+            <!-- <p><%- data.long_description %></p> -->
+            <input class="copy-text" id="copy-text" value="<%- survey_base_url %><%- data.url_code %>" readonly></input>
+            <button class="copy-button" onclick="copyText(this , 'copy-text')">Copy URL</button>
+            <div>
+                <p class="w3-panel w3-xlarge">Share this at social platforms</p>
+                <a class="fa fa-whatsapp" href="whatsapp://send?text=<%- data.whatsappMessage %>" data-action="share/whatsapp/share"></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<%- data.shareLink %>" target="_blank" class="fa fa-facebook"></a>
+                <a href="http://twitter.com/share?text=Help me signing this petition&url=<%- data.shareLink %>&hashtags=petition&text=Please help me by siging this" target="_blank" class="fa fa-twitter"></a>
+                <a href="https://plus.google.com/share?url=<%- data.shareLink %>" target="_blank" class="fa fa-google"></a>
+                <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<%- data.shareLink %>&title=Please help me by siging this" class="fa fa-linkedin"></a>
+                <!-- <a href="#" target="_blank" class="fa fa-instagram"></a> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
+

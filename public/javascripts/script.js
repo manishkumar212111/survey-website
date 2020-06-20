@@ -107,3 +107,13 @@ function handleFinalSubmission(finalObj){
 
   document.getElementById('petition-form').submit();
 }
+
+function copyText(event , id){
+  var text = document.getElementById(id);
+  text.select();
+  text.setSelectionRange(0, 99999); /*For mobile devices*/
+  
+  document.execCommand("copy");
+  
+  event.innerHTML = "copied";
+}
